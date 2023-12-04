@@ -1,0 +1,56 @@
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+ 
+Example 1:
+Input: nums = [3,2,3]
+Output: [3]
+Example 2:
+Input: nums = [1]
+Output: [1]
+Example 3:
+Input: nums = [1,2]
+Output: [1,2]
+ 
+Constraints:
+1 <= nums.length <= 5 * 104
+-109 <= nums[i] <= 109
+
+
+solutions:
+def majority_elements(nums):
+    if not nums:
+        return []
+
+    # It will intiate the candidates and counters
+    candidate1, candidate2 = None, None
+    count1, count2 = 0, 0
+
+    # looping
+    for num in nums:
+        if num == candidate1:
+            count1 += 1
+        elif num == candidate2:
+            count2 += 1
+        elif count1 == 0:
+            candidate1, count1 = num, 1
+        elif count2 == 0:
+            candidate2, count2 = num, 1
+        else:
+            count1 -= 1
+            count2 -= 1
+
+    # It will Count occurrences of candidates in the array
+    count1, count2 = nums.count(candidate1), nums.count(candidate2)
+
+    #It will Check if candidates appear more than n/3 times
+    result = [c for c in (candidate1, candidate2) if nums.count(c) > len(nums) // 3]
+
+    return result
+
+# input example:
+nums1 = [3, 2, 3]
+nums2 = [1]
+nums3 = [1, 2]
+
+print(majority_elements(nums1))  # Output: [3]
+print(majority_elements(nums2))  # Output: [1]
+print(majority_elements(nums3))  # Output: [1, 2]
