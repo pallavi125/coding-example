@@ -1,0 +1,29 @@
+Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.
+Example 1:
+Input: n = 13
+Output: 6
+Example 2:
+Input: n = 0
+Output: 0
+ 
+Constraints:
+0 <= n <= 109
+
+solutions:
+
+def count_digit_one(n):
+    count = 0
+    factor = 1
+
+    while factor <= n:
+        count += (n // (factor * 10)) * factor + min(max(n % (factor * 10) - factor + 1, 0), factor)
+        factor *= 10
+
+    return count
+
+# input example:
+n1 = 13
+n2 = 0
+
+print(count_digit_one(n1))  # Output: 6
+print(count_digit_one(n2))  # Output: 0
