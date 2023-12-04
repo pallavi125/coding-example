@@ -11,16 +11,13 @@ Explanation: The last word is "World" with length 5.
 solution:
 
 def length_of_last_word(s):
-    #It will Split the string into a list of words
+    #It will Split the string into words using spaces as separators
     words = s.split()
 
-    # It will Check if there are any words in the list
-    if not words:
-        return 0
-
-    # It will Return the length of the last word
+    # It Returns the length of the last word
     return len(words[-1])
 
-#input example
+# input example
 s = "Hello World"
 result = length_of_last_word(s)
+print(result)
